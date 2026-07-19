@@ -3,7 +3,9 @@
 #include<vector>
 class Library
 {
-	std::vector<Book> vector_;
+	std::vector<Book> books_;
+	
+
 public:
 	void add_book(std::string title, std::string author, const int year);
 	bool delete_book(std::string& title);

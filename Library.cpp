@@ -4,19 +4,19 @@
 #include<iostream>
 void Library::add_book(std::string title,std::string author, const int year)
 {
-	vector_.emplace_back(std::move(title), std::move(author), year);
+	books_.emplace_back(std::move(title), std::move(author), year);
 }
-
+[[nodiscard]]
 bool Library::delete_book(std::string& title)
 {
-	const auto it = std::erase_if(vector_ , [&title](const Book& b) {return b.get_title() == title; });
+	const auto it = std::erase_if(books_ , [&title](const Book& b) {return b.get_title() == title; });
 	return it;
 }
-
+[[nodiscard]]
 Book* Library::find_book(std::string& title)
 {
-	const auto it = std::ranges::find_if(vector_, [&title](const Book& b) {return b.get_title() == title; });
-	if (it != vector_.end())
+	const auto it = std::ranges::find_if(books_, [&title](const Book& b) {return b.get_title() == title; });
+	if (it != books_.end())
 	{
 		return &(*it);
 	}
@@ -26,9 +26,9 @@ Book* Library::find_book(std::string& title)
 
 void Library::sort_books()
 {
-	std::ranges::sort(vector_, {}, &Book::get_title);
+	std::ranges::sort(books_, {}, &Book::get_title);
 }
-
+[[nodiscard]]
 bool Library::save_to_file(const std::string& filename) const
 {
 	std::ofstream file(filename);
@@ -36,12 +36,13 @@ bool Library::save_to_file(const std::string& filename) const
 	{
 		return false;
 	}
-	for (const auto& x : vector_)
+	for (const auto& x : books_)
 	{
 		file << x.get_title() << "\n" << x.get_author() << "\n" << x.get_year();
 	}
 	return true;
 }
+[[nodiscard]]
 bool Library::load_from_file(const std::string& filename)
 {
 	std::ifstream file(filename);
@@ -49,7 +50,7 @@ bool Library::load_from_file(const std::string& filename)
 	{
 		return false;
 	}
-	vector_.clear();
+	books_.clear();
 	std::string title;
 	std::string author;
 	int year;
@@ -58,7 +59,7 @@ bool Library::load_from_file(const std::string& filename)
 		std::getline(file, author);
 		file >> year;
 		file.ignore();
-		vector_.emplace_back(title, author, year);
+		books_.emplace_back(title, author, year);
 	}
 	return true;
 
@@ -66,7 +67,7 @@ bool Library::load_from_file(const std::string& filename)
 
 void Library::display() const
 {
-	for (const auto& x : vector_)
+	for (const auto& x : books_)
 	{
 		x.display();
 	}

@@ -11,19 +11,13 @@ Book::Book(std::string title, std::string author, const int year) : title_(std::
 	
 }
 
-std::string Book::get_author() const
+const std::string& Book::get_author() const
 {
 	return author_;
 }
 
-void Book::get_book(std::string& title, std::string& author,const int year)
-{
-	title_ = std::move(title);
-	author_ = std::move(author);
-	year_ = year;
-}
 
-std::string Book::get_title() const
+const std::string& Book::get_title() const
 {
 	return title_;
 }
