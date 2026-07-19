@@ -1,5 +1,5 @@
 #include "Book.h"
-
+#include<iostream>
 Book::Book() : title_("unknown"), author_("unknown"), year_(0)
 {
 	
@@ -31,4 +31,11 @@ std::string Book::get_title() const
 int Book::get_year() const
 {
 	return year_;
+}
+
+void Book::display()const
+{
+	std::cout << "\nTitle: " << title_;
+	std::cout << "\nAuthor: " << author_;
+	std::cout << "\nYear: " << year_;
 }

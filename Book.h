@@ -10,6 +10,7 @@ public:
 	void get_book( std::string& title, std::string& author,const int year);
 	Book();
 	Book(std::string title, std::string author, const int year);
+	void display()const;
 	[[nodiscard]]
 	std::string get_title()const;
 	[[nodiscard]]
