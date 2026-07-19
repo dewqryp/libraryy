@@ -38,7 +38,7 @@ bool Library::save_to_file(const std::string& filename) const
 	}
 	for (const auto& x : books_)
 	{
-		file << x.get_title() << "\n" << x.get_author() << "\n" << x.get_year();
+		file << x.get_title() << "\n" << x.get_author() << "\n" << x.get_year() << "\n";
 	}
 	return true;
 }
