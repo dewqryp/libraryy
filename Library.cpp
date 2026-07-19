@@ -36,7 +36,7 @@ bool Library::save_to_file(const std::string& filename) const
 	{
 		return false;
 	}
-	for (const auto& x : books)
+	for (const auto& x : vector_)
 	{
 		file << x.get_title() << "\n" << x.get_author() << "\n" << x.get_year();
 	}
@@ -49,7 +49,7 @@ bool Library::load_from_file(const std::string& filename)
 	{
 		return false;
 	}
-	books.clear();
+	vector_.clear();
 	std::string title;
 	std::string author;
 	int year;
@@ -58,7 +58,7 @@ bool Library::load_from_file(const std::string& filename)
 		std::getline(file, author);
 		file >> year;
 		file.ignore();
-		books.emplace_back(title, author, year);
+		vector_.emplace_back(title, author, year);
 	}
 	return true;
 
