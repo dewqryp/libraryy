@@ -11,6 +11,7 @@ class ConsoleUI
 	void find_book();
 	void save_books()const;
 	void load_books();
+	int input_year();
 public:
 	void run();
 };

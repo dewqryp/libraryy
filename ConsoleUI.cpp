@@ -21,16 +21,16 @@ void ConsoleUI::add_book()
 {
     std::string title;
     std::string author;
-    int year;
+    
 
     std::cout << "Title: ";
     std::getline(std::cin >> std::ws, title);
 
     std::cout << "Author: ";
     std::getline(std::cin, author);
-
     std::cout << "Year: ";
-    std::cin >> year;
+    int year = input_year();
+    
 
     library_.add_book(title, author, year);
 
@@ -163,4 +163,32 @@ void ConsoleUI::save_books()const
     {
         std::cout << "\nError.\n";
     }
+}
+
+int ConsoleUI::input_year()
+{
+    int year;
+    while (true)
+    {
+        if (!(std::cin >> year))
+        {
+            std::cout << "Incorrect input. Try again: ";
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (year < 5 || year > 2026)
+        {
+            std::cout << "Year must be between 5 and 2026. Try again: ";
+
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        break;
+    }
+    return year;
 }
