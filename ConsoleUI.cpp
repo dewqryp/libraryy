@@ -85,8 +85,9 @@ void ConsoleUI::run()
 
     do
     {
+        load_books();
         show_menu();
-
+        
         if (!(std::cin >> choice))
         {
             std::cin.clear();
@@ -126,8 +127,9 @@ void ConsoleUI::run()
 
         case 0:
             std::cout << "Goodbye!\n";
+            save_books();
             break;
-
+            
         default:
             std::cout << "Invalid choice.\n";
         }
@@ -137,10 +139,8 @@ void ConsoleUI::run()
 
 void ConsoleUI::load_books()
 {
-    std::string filename;
-    std::cout << "\nEnter filename: ";
-    std::getline(std::cin >> std::ws, filename);
-    if (library_.load_from_file(filename))
+    
+    if (library_.load_from_file("books.dat"))
     {
         std::cout << "\nLoaded.\n";
     }
@@ -152,10 +152,9 @@ void ConsoleUI::load_books()
 
 void ConsoleUI::save_books()const
 {
-    std::string filename;
-    std::cout << "\nEnter filename: ";
-    std::getline(std::cin >> std::ws, filename);
-    if (library_.save_to_file(filename))
+    
+    
+    if (library_.save_to_file("books.dat"))
     {
         std::cout << "\nSaved.\n";
     }
