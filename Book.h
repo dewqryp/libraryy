@@ -9,7 +9,7 @@ public:
 	
 	
 	Book();
-	Book(std::string title, std::string author, const int year);
+	Book(const std::string& title, const std::string& author,const int year);
 	void display()const;
 	[[nodiscard]]
 	const std::string& get_title()const;

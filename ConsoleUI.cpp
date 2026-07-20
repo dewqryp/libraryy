@@ -2,7 +2,6 @@
 #include<iostream>
 
 
-
 void ConsoleUI::show_menu()const
 {
     std::cout << "\n===== Library =====\n";
@@ -82,10 +81,10 @@ void ConsoleUI::display() const
 void ConsoleUI::run()
 {
     int choice;
-
+    load_books();
     do
     {
-        load_books();
+        
         show_menu();
         
         if (!(std::cin >> choice))
@@ -100,7 +99,7 @@ void ConsoleUI::run()
         switch (choice)
         {
         case 1:
-            add_book();
+			add_book();
             break;
 
         case 2:
@@ -127,7 +126,7 @@ void ConsoleUI::run()
 
         case 0:
             std::cout << "Goodbye!\n";
-            save_books();
+            
             break;
             
         default:
@@ -135,12 +134,13 @@ void ConsoleUI::run()
         }
 
     } while (choice != 0);
+    save_books();
 }
 
 void ConsoleUI::load_books()
 {
     
-    if (library_.load_from_file("books.dat"))
+    if (library_.load_from_file())
     {
         std::cout << "\nLoaded.\n";
     }
@@ -153,8 +153,7 @@ void ConsoleUI::load_books()
 void ConsoleUI::save_books()const
 {
     
-    
-    if (library_.save_to_file("books.dat"))
+    if (library_.save_to_file())
     {
         std::cout << "\nSaved.\n";
     }

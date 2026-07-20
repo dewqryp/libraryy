@@ -6,10 +6,11 @@ Book::Book() : title_("unknown"), author_("unknown"), year_(0)
 
 }
 
-Book::Book(std::string title, std::string author, const int year) : title_(std::move(title)), author_(std::move(author)), year_(year)
+Book::Book(const std::string& title, const std::string& author,const int year): title_(title), author_(author), year_(year)
 {
 	
 }
+
 
 const std::string& Book::get_author() const
 {
